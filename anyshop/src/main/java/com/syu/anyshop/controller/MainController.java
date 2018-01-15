@@ -32,7 +32,8 @@ public class MainController {
 	public String main(Model model) {
 		logger.info("Welcome mainController home! " + new Date());
 		model.addAttribute("hello", "hello i'm heum");
-		System.out.println("ÇÏÀ§^^");
+		System.out.println("ï¿½ï¿½ï¿½ï¿½^^");
+		System.out.println("í•˜ìœ„^^");
 		return "home/home";
 	}
 
