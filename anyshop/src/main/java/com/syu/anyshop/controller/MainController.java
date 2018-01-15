@@ -35,6 +35,7 @@ public class MainController {
 		System.out.println("����^^");
 		System.out.println("하위^^");
 		System.out.println("하위^^");
+		System.out.println("최찬흠^^");
 		return "home/home";
 	}
 
