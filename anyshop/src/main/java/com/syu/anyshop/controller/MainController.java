@@ -34,6 +34,7 @@ public class MainController {
 		model.addAttribute("hello", "hello i'm heum");
 		System.out.println("����^^");
 		System.out.println("하위^^");
+		System.out.println("하위^^");
 		return "home/home";
 	}
 
