@@ -45,6 +45,9 @@
       <script src="resources/bootstrap/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="resources/bootstrap/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- kakao javascript sdk -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   
 
   </head>
@@ -132,7 +135,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="main.do">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Any<strong>Shop</strong> <span>Hong & Choi</span></p>
                 </a>
@@ -1953,6 +1956,38 @@
             <button class="aa-browse-btn" type="submit">Login</button>
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
             <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            
+            <!-- 카카오로그인 -->
+             <a id="kakao-login-btn"></a>
+		     <a href="http://developers.kakao.com/logout"></a>
+		     <script type='text/javascript'>
+		       //<![CDATA[
+		         // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		         Kakao.init('27f13d749f0d64e89c166978e0841232');
+		         // 카카오 로그인 버튼을 생성합니다.
+		         Kakao.Auth.createLoginButton({
+		           container: '#kakao-login-btn',
+		           success: function(authObj) {
+		        	// 로그인 성공시, API를 호출합니다.
+		               Kakao.API.request({
+		                 url: '/v1/user/me',
+		                 success: function(res) {
+		                   alert(JSON.stringify(res));
+		                   alert(res.properties.nickname);
+		                 },
+		                 fail: function(error) {
+		                   alert(JSON.stringify(error));
+		                 }
+		               });
+		             },
+		             fail: function(err) {
+		               alert(JSON.stringify(err));
+		             }
+		         });
+		       //]]>
+		     </script>
+            
+            
             <div class="aa-register-now">
               Don't have an account?<a href="account.html">Register now!</a>
             </div>
