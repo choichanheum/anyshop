@@ -109,7 +109,7 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account.html">My Account</a></li>
+                  <li><a href="account.jsp">My Account</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
@@ -1954,7 +1954,7 @@
             <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
             <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
             <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
+              Don't have an account?<a href="account.do">Register now!</a>
             </div>
           </form>
         </div>                        

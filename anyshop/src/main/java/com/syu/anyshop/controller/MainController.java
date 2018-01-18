@@ -36,7 +36,16 @@ public class MainController {
 		System.out.println("하위^^");
 		System.out.println("하위^^");
 		System.out.println("최찬흠^^");
+		System.out.println("홍정선^^");
 		return "home/home";
 	}
 
+	@RequestMapping(value = "account.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String account(Model model) {
+		logger.info("Welcome mainController home! " + new Date());
+		model.addAttribute("hello", "hello i'm heum");
+		
+		return "home/account";
+	}
+	
 }
