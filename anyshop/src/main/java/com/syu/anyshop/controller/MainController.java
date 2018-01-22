@@ -39,5 +39,11 @@ public class MainController {
 		System.out.println("홍정선^^");
 		return "home/home";
 	}
+	
+	@RequestMapping(value = "test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String test(Model model) {
+		logger.info("Welcome mainController test! " + new Date());
+		return "test1";
+	}
 
 }

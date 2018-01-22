@@ -48,8 +48,7 @@
     
     <!-- kakao javascript sdk -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
-
+    
   </head>
   <body> 
    <!-- wpf loader Two -->
@@ -145,7 +144,7 @@
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="test.do">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
                   <span class="aa-cart-notify">2</span>
