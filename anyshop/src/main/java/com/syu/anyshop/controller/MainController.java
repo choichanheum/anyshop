@@ -29,23 +29,20 @@ public class MainController {
 	private LoginService loginService;
 
 	@RequestMapping(value = "main.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String main(Model model) {
-		logger.info("Welcome mainController home! " + new Date());
-		model.addAttribute("hello", "hello i'm heum");
-		System.out.println("����^^");
-		System.out.println("하위^^");
-		System.out.println("하위^^");
-		System.out.println("최찬흠^^");
-		System.out.println("홍정선^^");
-		return "home/home";
-	}
-
-	@RequestMapping(value = "account.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String account(Model model) {
+	public String main(Model model, HttpServletRequest request) {
 		logger.info("Welcome mainController home! " + new Date());
 		model.addAttribute("hello", "hello i'm heum");
 		
-		return "home/account";
+		return "home/home";
+	}
+
+	// 장바구니 조회
+	@RequestMapping(value = "cart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String cart(Model model, HttpServletRequest request) {
+		logger.info("Welcome mainController home! " + new Date());
+
+		
+		return "home/home";
 	}
 	
 }

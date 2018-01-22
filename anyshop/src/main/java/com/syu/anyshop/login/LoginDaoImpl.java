@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class LoginDaoImpl implements LoginDao{
-	String ns ="com.syu.supporter.login.LoginDao.";
+	String ns ="com.syu.anyshop.login.LoginDao.";
 	@Autowired
 	private SqlSession sqlSession;
+	
 	@Override
 	public boolean loginCheck(LoginInfo loginInfo) {
 		int count = Integer.parseInt(sqlSession.selectOne(ns+"loginCheck", loginInfo).toString()),

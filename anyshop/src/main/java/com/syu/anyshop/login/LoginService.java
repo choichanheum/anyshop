@@ -18,5 +18,6 @@ public interface LoginService {
 	int userCheck(String id);
 	//lock_screen 풀때 비밀번호 찾아오는것
 	String pwCheck(String id);
+
 	
 }

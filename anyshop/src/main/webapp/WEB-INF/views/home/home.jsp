@@ -45,6 +45,9 @@
       <script src="resources/bootstrap/https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="resources/bootstrap/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <!-- kakao javascript sdk -->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
   
 
   </head>
@@ -87,33 +90,43 @@
                 <!-- / language -->
 
                 <!-- start currency -->
-                <div class="aa-currency">
+            <!--     <div class="aa-currency">
                   <div class="dropdown">
                     <a class="btn dropdown-toggle" href="#" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      <i class="fa fa-usd"></i>USD
+                      <i class="fa fa-usd"></i>kor
                       <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <li><a href="#"><i class="fa fa-euro"></i>EURO</a></li>
-                      <li><a href="#"><i class="fa fa-jpy"></i>YEN</a></li>
-                    </ul>
+               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+                    </ul> 
                   </div>
-                </div>
+                </div> -->
                 <!-- / currency -->
                 <!-- start cellphone -->
                 <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span>00-62-658-658</p>
+                  <p><span class="fa fa-phone"></span>010-7234-9760 &nbsp; &nbsp; <span class="fa fa-phone"></span>010-3035-1858</p>
                 </div>
                 <!-- / cellphone -->
               </div>
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a href="account.jsp">My Account</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                  
+                  <!-- 로그인 안되었을 경우 로그인 버튼 보이게, 로그인 되었을 경우 로그아웃 버튼 보이게 -->
+              
+                  <c:if test="${empty sessionScope.id }">
+	                    <li><a class="hidden-xs" href="regi.do">회원 가입</a></li>
+	                   <li><a href="" data-toggle="modal" data-target="#login-modal">로그인</a></li>
+				  </c:if>
+				  <c:if test="${!empty sessionScope.id }">
+					       <li><a href="account.jsp">My Account</a></li>
+		                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
+		                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+		                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li> &nbsp;&nbsp;&nbsp;
+		                   <span style="color:blue"> ${sessionScope.loginInfo.name }님 반갑습니다. </span>  &nbsp;&nbsp;&nbsp;&nbsp; 
+	                       <li><a class="hidden-xs" href="mypage.do">Mypage</a></li>
+	                       <li><a class="hidden-xs" href="logout.do">Logout</a></li>
+				  </c:if>
                 </ul>
               </div>
             </div>
@@ -132,7 +145,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a href="main.do">
                   <span class="fa fa-shopping-cart"></span>
                   <p>Any<strong>Shop</strong> <span>Hong & Choi</span></p>
                 </a>
@@ -142,9 +155,9 @@
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
-                <a class="aa-cart-link" href="#">
+                <a class="aa-cart-link" href="cart.do">
                   <span class="fa fa-shopping-basket"></span>
-                  <span class="aa-cart-title">SHOPPING CART</span>
+                  <span class="aa-cart-title">장바구니</span>
                   <span class="aa-cart-notify">2</span>
                 </a>
                 <div class="aa-cartbox-summary">
@@ -181,7 +194,7 @@
               <!-- search box -->
               <div class="aa-search-box">
                 <form action="">
-                  <input type="text" name="" id="" placeholder="Search here ex. 'man' ">
+                  <input type="text" name="" id="" placeholder="찾으시는 것을 검색하세요. ">
                   <button type="submit"><span class="fa fa-search"></span></button>
                 </form>
               </div>
@@ -211,22 +224,21 @@
           <div class="navbar-collapse collapse">
             <!-- Left nav -->
             <ul class="nav navbar-nav">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.jsp">Home</a></li>
               <li><a href="#">Men <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="#">Casual</a></li>
-                  <li><a href="#">Sports</a></li>
-                  <li><a href="#">Formal</a></li>
-                  <li><a href="#">Standard</a></li>                                                
-                  <li><a href="#">T-Shirts</a></li>
-                  <li><a href="#">Shirts</a></li>
-                  <li><a href="#">Jeans</a></li>
-                  <li><a href="#">Trousers</a></li>
-                  <li><a href="#">And more.. <span class="caret"></span></a>
+                  <li><a href="#">캐주얼</a></li>
+                  <li><a href="#">스포츠</a></li>
+                  <li><a href="#">아우터</a></li>
+                  <li><a href="#">맨투맨</a></li>                                                
+                  <li><a href="#">셔츠</a></li>
+                  <li><a href="#">바지</a></li>
+                  <li><a href="#">신발 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Sleep Wear</a></li>
-                      <li><a href="#">Sandals</a></li>
-                      <li><a href="#">Loafers</a></li>                                      
+                      <li><a href="#">슬리퍼</a></li>
+                      <li><a href="#">샌들</a></li>
+                      <li><a href="#">단화</a></li>
+                      <li><a href="#">운동화</a></li>                                      
                     </ul>
                   </li>
                 </ul>
@@ -1938,23 +1950,57 @@
   </footer>
   <!-- / footer -->
 
-  <!-- Login Modal -->  
+  <!-- Login Modal -->->
   <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">                      
         <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login or Register</h4>
-          <form class="aa-login-form" action="">
-            <label for="">Username or Email address<span>*</span></label>
-            <input type="text" placeholder="Username or email">
-            <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
-            <button class="aa-browse-btn" type="submit">Login</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+         <span class="fa fa-shopping-cart"> AnyShop Login </span> 
+          <form class="aa-login-form" action="loginAfter.do" method="post">
+            <label for="">ID</label>
+           	 	<input type="text" name="id">
+            <label for="">Password</label> 
+            	<input type="password" name="pw">
+            	<input class="aa-browse-btn" type="submit" value="로그인">
+          </form> 
+         
+            
+            <!-- 카카오로그인 -->
+             <a id="kakao-login-btn"></a>
+		     <a href="http://developers.kakao.com/logout"></a>
+		     <script type='text/javascript'>
+		       //<![CDATA[
+		         // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		         Kakao.init('27f13d749f0d64e89c166978e0841232');
+		         // 카카오 로그인 버튼을 생성합니다.
+		         Kakao.Auth.createLoginButton({
+		           container: '#kakao-login-btn',
+		           success: function(authObj) {
+		        	// 로그인 성공시, API를 호출합니다.
+		               Kakao.API.request({
+		                 url: '/v1/user/me',
+		                 success: function(res) {
+		                   alert(JSON.stringify(res));
+		                   alert(res.properties.nickname);
+		                 },
+		                 fail: function(error) {
+		                   alert(JSON.stringify(error));
+		                 }
+		               });
+		             },
+		             fail: function(err) {
+		               alert(JSON.stringify(err));
+		             }
+		         });
+		       //]]>
+		     </script>
+            
+            <label for="rememberme" class="rememberme"></label>
+            <p class="aa-lost-password"><a href="#">암호를 잊어버리셨나요?</a></p>
+            
             <div class="aa-register-now">
-              Don't have an account?<a href="account.do">Register now!</a>
+             	아직 회원이 아니신가요?<a href="regi.do">회원가입</a>
             </div>
           </form>
         </div>                        
