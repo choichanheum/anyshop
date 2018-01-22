@@ -48,8 +48,7 @@
     
     <!-- kakao javascript sdk -->
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-  
-
+    
   </head>
   <body> 
    <!-- wpf loader Two -->
@@ -155,7 +154,11 @@
               <!-- / logo  -->
                <!-- cart box -->
               <div class="aa-cartbox">
+<<<<<<< HEAD
                 <a class="aa-cart-link" href="cart.do">
+=======
+                <a class="aa-cart-link" href="test.do">
+>>>>>>> branch 'master' of https://github.com/choichanheum/anyshop
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">장바구니</span>
                   <span class="aa-cart-notify">2</span>

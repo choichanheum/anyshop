@@ -35,6 +35,12 @@ public class MainController {
 		
 		return "home/home";
 	}
+	
+	@RequestMapping(value = "test.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String test(Model model) {
+		logger.info("Welcome mainController test! " + new Date());
+		return "test1";
+	}
 
 	// 장바구니 조회
 	@RequestMapping(value = "cart.do", method = { RequestMethod.GET, RequestMethod.POST })
