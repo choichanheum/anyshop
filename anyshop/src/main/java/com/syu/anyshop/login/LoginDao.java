@@ -11,7 +11,7 @@ public interface LoginDao {
 
 	void deleteMember(String id);
 
-	String findId(String name, String studentId);
+	String findId(String name, String phone);
 
 	String findPw(String id, String name, String studentId);
 

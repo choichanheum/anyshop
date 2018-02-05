@@ -35,8 +35,8 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public String findId(String name, String studentId) {
-		return loginDao.findId(name, studentId);
+	public String findId(String name, String phone) {
+		return loginDao.findId(name, phone);
 	}
 
 	@Override

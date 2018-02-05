@@ -48,10 +48,10 @@ public class LoginDaoImpl implements LoginDao{
 	}
 
 	@Override
-	public String findId(String name, String studentId) {
+	public String findId(String name,String phone) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("name", name);
-		map.put("studentId", studentId);
+		map.put("phone", phone);
 		return sqlSession.selectOne(ns+"findId", map);
 	}
 
