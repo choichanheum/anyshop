@@ -164,10 +164,10 @@ public class LoginController {
 		logger.info("아이디 찾기완료: "+ id);
 		
 		if( id != null) {
-			return "redirect:/main.do?id="+id;
+			return "findIdAfter.jsp?id="+id;
 		}
 		else {
-			return "login/finId?id=noInfo";
+			return "findIdAfter.jsp";
 		}
 	}  
 	

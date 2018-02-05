@@ -32,8 +32,6 @@ public class MainController {
 		logger.info("Welcome mainController home! " + new Date());
 		model.addAttribute("hello", "hello i'm heum");
 		
-		request.setAttribute("id", request.getParameter("id"));
-		
 		return "home/home";
 	}
 	
