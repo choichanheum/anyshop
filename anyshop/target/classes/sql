@@ -1,6 +1,7 @@
 ------- Member 테이블 생성 ------
 
-CREATE TABLE member (
+CREATE TABLE MEMBER (
+
   id varchar(50) NOT NULL,
   pw varchar(20) NOT NULL,
   name varchar(50) NOT NULL,
@@ -12,4 +13,65 @@ CREATE TABLE member (
  
   PRIMARY KEY (id)
 );
+
+
+----- ORDERLIST (주문 리스트) 테이블 -------------
+CREATE TABLE ORDERLIST(
+    ORDERNUMBER int(100),
+    ID VARCHAR(50) NOT NULL,
+    DELIVERYNUMBER INT(100),
+    ORDERDATE DATETIME,
+    DERLIVERYADDRESS VARCHAR(100) NOT NULL,
+    DELIVERYPHONE VARCHAR(15) NOT NULL,
+    PaymentMethod VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (ORDERNUMBER) 
+);
+
+
+
+-------- 제품 테이블 생성 ------------
+create table product (
+    productcode int(100),
+    ordernumber int(100) not null,
+    quantity int(10) not null,
+    price int(10) not null,
+    category varchar(20) not null,
+    sale varchar(10) default '0',
+
+    primary key(productcode) 
+
+);
+
+-------- 장바구니 테이블 --------
+create table wishlist(
+
+    id varchar(50) NOT NULL,
+    image mediumblob not null,
+    product varchar(100) not null,
+    quantity int(10) not null,
+    price int(10) not null,
+  
+    primary key(id)
+
+
+);
+
+
+
+
+-------- 택배 배송 테이블 --------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 

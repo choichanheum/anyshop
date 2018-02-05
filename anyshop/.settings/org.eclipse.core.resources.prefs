@@ -1,7 +1,7 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'master' of https\://github.com/choichanheum/anyshop
 eclipse.preferences.version=1
-<<<<<<< HEAD
 encoding//src/main/java/com/syu/anyshop/controller/MainController.java=UTF-8
-eclipse.preferences.version=1
-=======
->>>>>>> branch 'master' of https://github.com/choichanheum/anyshop
+encoding//src/main/webapp/WEB-INF/views/member/wishlist.jsp=UTF-8
 encoding/<project>=UTF-8

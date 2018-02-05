@@ -1,13 +1,9 @@
 package com.syu.anyshop.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.syu.anyshop.login.LoginInfo;
 import com.syu.anyshop.login.LoginService;
+import com.syu.anyshop.wishlist.WishListInfo;
+import com.syu.anyshop.wishlist.WishListService;
 
 @Controller
 public class MainController {
@@ -27,11 +23,16 @@ public class MainController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private WishListService wishlistService;
 
-	@RequestMapping(value = "main.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main(Model model, HttpServletRequest request) {
 		logger.info("Welcome mainController home! " + new Date());
 		model.addAttribute("hello", "hello i'm heum");
+		
+		request.setAttribute("id", request.getParameter("id"));
 		
 		return "home/home";
 	}
@@ -43,12 +44,20 @@ public class MainController {
 	}
 
 	// 장바구니 조회
-	@RequestMapping(value = "cart.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "wishlist.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cart(Model model, HttpServletRequest request) {
-		logger.info("Welcome mainController home! " + new Date());
+		logger.info("Welcome mainController 장바구니! " + new Date());
 
+		//wishlistService.addWishList((String)request.getSession().getAttribute("id"));
+		WishListInfo wishlistInfo= wishlistService.viewWishList((String)request.getSession().getAttribute("id"));
 		
-		return "home/home";
+		logger.info("Welcome mainController 여기까지1! " + new Date());
+		
+		request.setAttribute("WishList",wishlistInfo);
+		
+		logger.info("Welcome mainController 여기까지2 " + new Date());
+		
+		return "member/wishlist";
 	}
 	
 }

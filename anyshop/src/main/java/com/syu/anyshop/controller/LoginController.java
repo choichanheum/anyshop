@@ -83,7 +83,7 @@ public class LoginController {
 	public String logout(Model model, HttpServletRequest request) {
 		logger.info("Welcome LoginController loginout! "+ new Date());
 		request.getSession().invalidate();
-		return "login/login";
+		return "home/home";
 	}
 	
 	//회원가입
@@ -91,7 +91,7 @@ public class LoginController {
 			method = {RequestMethod.GET,RequestMethod.POST})
 	public String regi(Model model) {
 		logger.info("Welcome LoginController regi! "+ new Date());
-		return "login/regi";
+		return "regi";
 	}
 	
 	//회원가입 결과
@@ -116,10 +116,11 @@ public class LoginController {
 	//내정보 수정
 	@RequestMapping(value = "update_info.do", 
 	method = {RequestMethod.GET,RequestMethod.POST})
-	public String update_info(String id,Model model) {
+	public String update_info(LoginInfo loginInfo, Model model, HttpServletRequest request) {
 		logger.info("Welcome LoginController update_info! "+ new Date());
-		logger.info("Welcome LoginController update_info! "+ id);
-		return "login/update_info";
+		logger.info("Welcome LoginController update_info! "+ loginInfo.getId());
+		
+		return "login/updateMyInfo";
 	}
 	
 	//내정보 수정 결과
@@ -128,8 +129,9 @@ public class LoginController {
 	public String updateAfter(LoginInfo loginInfo, Model model, HttpServletRequest request) {
 		logger.info("Welcome LoginController updateAfter! "+ new Date());
 		loginService.updateMember(loginInfo);
-		request.getSession().setAttribute("loginInfo", loginInfo);
-		return "redirect:/update_info.do";
+		request.getSession().invalidate();
+		
+		return "redirect:/main.do";
 	}
 	
 	//회원 탈퇴
@@ -154,13 +156,19 @@ public class LoginController {
 	//아이디 찾기 결과
 	@RequestMapping(value = "findIdAfter.do", 
 			method = {RequestMethod.GET,RequestMethod.POST})
-	public String findIdAfter(@RequestParam String name, @RequestParam String studentId, Model model) {
+	public String findIdAfter(@RequestParam String name, @RequestParam String phone, Model model) {
 		logger.info("Welcome LoginController findIdAfter! "+ new Date());
 		logger.info("Welcome LoginController findIdAfter! "+ name);
-		logger.info("Welcome LoginController findIdAfter! "+ studentId);
-		String id = loginService.findId(name, studentId);
+		logger.info("Welcome LoginController findIdAfter! "+ phone);
+		String id = loginService.findId(name, phone);
 		logger.info("아이디 찾기완료: "+ id);
-		return "redirect:/login.do?id="+id;
+		
+		if( id != null) {
+			return "redirect:/main.do?id="+id;
+		}
+		else {
+			return "login/finId?id=noInfo";
+		}
 	}  
 	
 	//비밀번호 찾기
@@ -197,6 +205,7 @@ public class LoginController {
 		logger.info(Integer.toString(result));
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		map.put("result", result);
+		logger.info("여기 값 출력: " + map.get("result"));
 		return map;
 	/*	JSONObject jsonObject = JSONObject.fromObject(map);
 	    PrintWriter pr= response.getWriter();

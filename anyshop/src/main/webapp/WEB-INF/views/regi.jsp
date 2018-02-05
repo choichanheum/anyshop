@@ -3,33 +3,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <head>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   <!--  The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>sign up page</title>
 
     <!-- Bootstrap -->
     <link href="resources/bootstrap/regicss/bootstrap.min.css" rel="stylesheet">
-    <!-- font awesome -->
+   <!--  font awesome -->
     <link rel="stylesheet" href="resources/bootstrap/regicss/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
     <!-- Custom style -->
     <link rel="stylesheet" href="resources/bootstrap/regicss/style.css" media="screen" title="no title" charset="utf-8">
 
-    <!-- HTML5 shim and Respond.regijs for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.regijs doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+   <!--   HTML5 shim and Respond.regijs for IE8 support of HTML5 elements and media queries
+    WARNING: Respond.regijs doesn't work if you view the page via file://
+    [if lt IE 9]> -->
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.regijs"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.regijs"></script>
-    <![endif]-->
+
     
  <script type="text/javascript">
 
 	function idCheck() {
 	    
 	    var id = $('#_id').val();
-	    alert(id);
 	 
 	     if( !id ) {
 	        alert("아이디를 입력하지 않았습니다.");
@@ -37,25 +35,26 @@
 	        
 	     } else if( (id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z") ) { 
 	        $('#checkMessage').css('color','brown');
-	        $('#checkMessage').html('한글 및 특수 문자는 아이디로 사용하실 수 없습니다.');     
+	        $('#checkMessage').html('한글 및 특수 문자는 아이디로 사용하실 수 없습니다.');   
+	        alert('한글 및 특수 문자는 아이디로 사용하실 수 없습니다.');
 	        return false;
 	        
 	     } else if (id.length < 4) {
 	   		  $('#checkMessage').css('color','orange');
 	   		  $('#checkMessage').html('아이디 길이는 4자 이상으로 입력해주세요.'); 
+	   		  alert('아이디 길이는 4자 이상으로 입력해주세요.');
 	      	  return false;
 	      	  
 	 	 } else{
-	 		
+	 		 alert("1");
 	        $.ajax ({
 	            type: 'POST',
-
 	            url: 'UserCheckServlet.do',
-
-	            data: { id: id },
-
+	            data: id,
 	            success: function(msg) {
-	               if(msg.result == 0 ) {
+	            	alert('성공');
+
+	                if(msg.result == 0 ) {
 	                  $('#checkMessage').css('color','green');
 	                  $('#checkMessage').html('사용할 수 있는 아이디입니다.');
 	                  $('#idDuplication').attr("value","idCheck");
@@ -63,21 +62,26 @@
 	                  $('#checkMessage').css('color','red');
 	                  $('#checkMessage').html('이미 사용중인 아이디입니다.');
 	                  $('#idDuplication').attr("value","idUnCheck");
-	               }
+	               } 
+	            },
+	            error : function(request,status,error) {
+	            	alert('실패');
+	                alert(request.status);
+	                alert(error);
 	            }
 	         });
 	     }     
 	 }
 </script>   
   	  
- </head>  
+</head> 
  <!-- onSubmit="return checkValue();" -->
- <body>
+
 
         <div class="page-header">
     	    <h1>Any Shop 회원가입 </h1>
         </div>
-        <form class="form-horizontal" method="post" name="userInfo" action="regiAfter.do">
+        <form class="form-horizontal" method="post" name="userInfo" action="regiAfter.do"  onSubmit="return checkValue();">
          <div class="form-group">
           <label class="col-sm-3 control-label">아이디</label>
         <div class="col-sm-6">
@@ -153,18 +157,18 @@
          <div>
             <label class="col-sm-3 control-label">성별</label>
           <div class="col-sm-6">
-          	 <input type="radio" name="gender" value="man"> 남자 &nbsp; 
-			 <input type="radio" name="gender" value="women"> 여자
+          	 <input type="radio" name="gender" value="남자"> 남자 &nbsp; 
+			 <input type="radio" name="gender" value="여자"> 여자
           </div>
         </div>
       <br>
           <div class="form-group">
             <div class="col-sm-6" data-toggle="buttons">
-              <label class="btn btn-warning active">
+             <!--  <label class="btn btn-warning active">
                 <input id="agree" type="checkbox" autocomplete="off" chacked>
                   <span class="fa fa-check"></span>
-              </label>
-              <a href="#">이용약관</a> 에 동의 합니다.
+              </label> -->
+             <!--  <a href="#">이용약관</a> 에 동의 합니다. -->
             </div>
           </div>
         <div class="form-group">
@@ -174,7 +178,7 @@
           </div>
         </div>
        </form>
-</body>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -329,16 +333,15 @@
                 return false;
              }
             
-            else if(emailCheck != "emailCheck") {
-                alert('이메일을 확인 하시기 바랍니다.');
-                return false;
-             }
-             
-             
             else if(nameCheck != "nameCheck") {
                 alert('이름을 확인 하시기 바랍니다.');
                 return false;
              }
+            
+            else if(emailCheck != "emailCheck") {
+                alert('이메일을 확인 하시기 바랍니다.');
+                return false;
+             } 
              
             else if(phoneCheck != "phoneCheck") {
                 alert('번호를 확인 하시기 바랍니다.');
@@ -360,24 +363,23 @@
                 return false;
             }
             
-            else if(!document.userInfo.email.value){
-                alert("이메일을 입력하세요.");
-                return false;
-            }
-            
             else if(!document.userInfo.name.value){
                 alert("이름을 입력하세요.");
                 return false;
             }
             
-            else if(!document.userInfo.address.value){
-                alert("주소를 입력하세요.");
+            else if(!document.userInfo.email.value){
+                alert("이메일을 입력하세요.");
                 return false;
             }
             
-            
             else if(!document.userInfo.phone.value){
                 alert("전화번호를 입력하세요.");
+                return false;
+            }
+                      
+            else if(!document.userInfo.address.value){
+                alert("주소를 입력하세요.");
                 return false;
             }
             
