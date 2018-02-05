@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<!-- 깃 허브 -->
-
   <!-- Start slider -->
   <section id="aa-slider">
     <div class="aa-slider-area">
@@ -21,7 +19,7 @@
                <span data-seq>Save Up to 75% Off</span>                
                 <h2 data-seq>Men Collection</h2>                
                 <p data-seq>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, illum.</p>
-                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">SHOP NOW</a>
+                <a data-seq href="#" class="aa-shop-now-btn aa-secondary-btn">샵 나우</a>
               </div>
             </li>
             <!-- single slide item -->
