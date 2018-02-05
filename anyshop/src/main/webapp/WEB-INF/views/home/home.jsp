@@ -14,6 +14,7 @@
     <title>Any Shop | Home</title>
     
     <!-- Font awesome -->
+    
     <link href="resources/bootstrap/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">   
