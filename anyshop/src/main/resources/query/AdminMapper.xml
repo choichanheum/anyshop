@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.syu.anyshop.admin.AdminDao">
+
+<!-- 모든 회원리스트 쿼리 -->
+	<select id="AllMemberList" resultType="com.syu.anyshop.login.LoginInfo">
+		SELECT * FROM MEMBER
+	</select> 
+	
+</mapper>

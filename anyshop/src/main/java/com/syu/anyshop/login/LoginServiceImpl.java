@@ -40,8 +40,8 @@ public class LoginServiceImpl implements LoginService{
 	}
 
 	@Override
-	public String findPw(String id, String name, String studentId) {
-		return loginDao.findPw(id, name, studentId);
+	public String findPw(String id, String name, String phone) {
+		return loginDao.findPw(id, name, phone);
 	}
 
 	@Override
@@ -52,6 +52,12 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public String pwCheck(String id) {
 		return loginDao.pwCheck(id);
+	}
+	
+	@Override
+	public void updatePw(String id, String pw) {
+		
+		loginDao.updatePw(id, pw);
 	}
 
 

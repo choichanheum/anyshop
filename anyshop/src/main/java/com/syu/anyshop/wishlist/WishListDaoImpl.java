@@ -1,5 +1,6 @@
 package com.syu.anyshop.wishlist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,8 +24,13 @@ public class WishListDaoImpl implements WishListDao{
 
 
 	@Override
-	public WishListInfo viewWishList(String id) {
-		return sqlSession.selectOne(ns+"viewWishList", id);
+	public List<WishListInfo> viewWishList(String id) {
+		
+		List<WishListInfo> list= new ArrayList<WishListInfo>();
+		
+		list= sqlSession.selectList(ns+"viewWishList", id);
+		
+		return list;
 	}
 
 }

@@ -13,10 +13,12 @@ public interface LoginDao {
 
 	String findId(String name, String phone);
 
-	String findPw(String id, String name, String studentId);
+	String findPw(String id, String name, String phone);
 
 	int userCheck(String id);
 
 	String pwCheck(String id);
+
+	void updatePw(String id, String pw);
 		
 }

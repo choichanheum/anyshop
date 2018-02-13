@@ -56,14 +56,23 @@ public class LoginDaoImpl implements LoginDao{
 	}
 
 	@Override
-	public String findPw(String id, String name, String studentId) {
+	public String findPw(String id, String name, String phone) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("name", name);
-		map.put("studentId", studentId);
+		map.put("phone", phone);
 		return sqlSession.selectOne(ns+"findPw", map);
 	}
 
+	@Override
+	public void updatePw(String id, String pw) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("pw", pw);
+		
+		sqlSession.update(ns+"updatePw", map);
+	}
+	
 	@Override
 	public int userCheck(String id) {
 		return sqlSession.selectOne(ns+"userCheck", id);

@@ -6,6 +6,6 @@ public interface WishListService {
 
 	void addWishList(String id);
 	
-	WishListInfo viewWishList(String id);
+	List<WishListInfo> viewWishList(String id);
 	
 }

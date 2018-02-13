@@ -56,31 +56,39 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
+                
+                <c:if test="${sessionScope.id eq 'hjs9760'}">
+                	<ul class="aa-head-top-nav-right">         
+	                  <li class="hidden-xs"><a href="admin.do">관리자 페이지</a></li>
+	                  <li class="hidden-xs"><a href="logout.do" onClick="return logout();">로그아웃</a></li>
+              	  </ul>              
+                </c:if>
                   
   
-                 <c:if test="${sessionScope.id ne null}">
-                 	<ul class="aa-head-top-nav-right">
-	                  <li><a href="mypage.do"> 내 정보 </a></li>         
-	                  <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-	                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-	                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-	                  <li class="hidden-xs"><a href="logout.do" onClick="return logout();">로그아웃</a></li>
-	                  
-	                  	 <script>
-					    		function logout() {    		
-					    			var logout= confirm("정말 로그아웃 하시겠습니까?");
-					    			
-					    			if(logout== true) {
-					    				alert("정상적으로 로그아웃 되었습니다.");
-					    				return true;
-					    			}
-					    			else {
-					    				return false;
-					    			}
-					    		}     	
-   					   	</script>
-	                  
-               		 </ul>
+ 				 <c:if test="${sessionScope.id ne 'hjs9760'}">
+              	   <c:if test="${sessionScope.id ne null}">	
+	                 	<ul class="aa-head-top-nav-right">
+		                  <li><a href="mypage.do"> 내 정보 </a></li>         
+		                  <li class="hidden-xs"><a href="wishlist.do">장바구니</a></li>
+		                  <li class="hidden-xs"><a href="checkout.do">결제 상품</a></li>
+		                  <li class="hidden-xs"><a href="logout.do" onClick="return logout();">로그아웃</a></li>
+		                  
+		                  	 <script>
+						    		function logout() {    		
+						    			var logout= confirm("정말 로그아웃 하시겠습니까?");
+						    			
+						    			if(logout== true) {
+						    				alert("정상적으로 로그아웃 되었습니다.");
+						    				return true;
+						    			}
+						    			else {
+						    				return false;
+						    			}
+						    		}     	
+	   					   	</script>
+	   					   	     
+	               		 </ul>
+                	 </c:if>
                  </c:if>
                   
                    <c:if test="${sessionScope.id eq null}">
@@ -187,7 +195,7 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><a href="main.do">Home</a></li>
-              <li><a href="#">Men <span class="caret"></span></a>
+              <li><a href="#">남자 <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Casual</a></li>
                   <li><a href="#">Sports</a></li>

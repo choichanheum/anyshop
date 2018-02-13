@@ -13,11 +13,13 @@ public interface LoginService {
 
 	String findId(String name, String phone);
 
-	String findPw(String id, String name, String studentId);
+	String findPw(String id, String name, String phone);
 
 	int userCheck(String id);
 	//lock_screen 풀때 비밀번호 찾아오는것
 	String pwCheck(String id);
+
+	void updatePw(String id, String pw);
 
 	
 }

@@ -5,6 +5,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -58,6 +60,68 @@
  	<tiles:insertAttribute name="header" />
 
 	<tiles:insertAttribute name="body" />
+	
+	
+	  <!-- Login Modal -->->
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">                      
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <span class="fa fa-shopping-cart"> AnyShop Login </span> 
+          <form class="aa-login-form" action="loginAfter.do" method="post">
+            <label for="">ID</label>
+           	 	<input type="text" name="id">
+            <label for="">Password</label> 
+            	<input type="password" name="pw">
+            	<input class="aa-browse-btn" type="submit" value="로그인">
+          </form> 
+         
+            
+            <!-- 카카오로그인 -->
+             <a id="kakao-login-btn"></a>
+		     <a href="http://developers.kakao.com/logout"></a>
+		     <script type='text/javascript'>
+		       //<![CDATA[
+		         // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		         Kakao.init('27f13d749f0d64e89c166978e0841232');
+		         // 카카오 로그인 버튼을 생성합니다.
+		         Kakao.Auth.createLoginButton({
+		           container: '#kakao-login-btn',
+		           success: function(authObj) {
+		        	// 로그인 성공시, API를 호출합니다.
+		               Kakao.API.request({
+		                 url: '/v1/user/me',
+		                 success: function(res) {
+		                   alert(JSON.stringify(res));
+		                   alert(res.properties.nickname);
+
+		                   loaction.href="kakaoLoginAfter.do?id=" +res.properties.nickname;
+		                 },
+		                 fail: function(error) {
+		                   alert(JSON.stringify(error));
+		                 }
+		               });
+		             },
+		             fail: function(err) {
+		               alert(JSON.stringify(err));
+		             }
+		         });
+		       //]]>
+		     </script>
+            
+            <label for="rememberme" class="rememberme"></label>
+             <p class="aa-lost-password"><a href="findId.do">아이디를 잊어버리셨나요?</a></p>
+            <p class="aa-lost-password"><a href="findPw.do">암호를 잊어버리셨나요?</a></p>
+            
+            <div class="aa-register-now">
+             	아직 회원이 아니신가요?<a href="regi.do">회원가입</a>
+            </div>
+          </form>
+        </div>                        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div> 
 </body>
 
 

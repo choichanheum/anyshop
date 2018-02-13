@@ -1,7 +1,9 @@
 package com.syu.anyshop.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,19 +23,10 @@ import com.syu.anyshop.wishlist.WishListService;
 public class MainController {
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
-	@Autowired
-	private LoginService loginService;
 	
 	@Autowired
 	private WishListService wishlistService;
 
-	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String main(Model model, HttpServletRequest request) {
-		logger.info("Welcome mainController home! " + new Date());
-		model.addAttribute("hello", "hello i'm heum");
-		
-		return "home/home";
-	}
 	
 	@RequestMapping(value = "test.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String test(Model model) {
@@ -44,16 +37,16 @@ public class MainController {
 	// 장바구니 조회
 	@RequestMapping(value = "wishlist.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String cart(Model model, HttpServletRequest request) {
-		logger.info("Welcome mainController 장바구니! " + new Date());
+		logger.info("Welcome mainController 장바구니 조회! " + new Date());
+		
+		List<WishListInfo> wishlist= wishlistService.viewWishList((String)request.getSession().getAttribute("id"));
 
-		//wishlistService.addWishList((String)request.getSession().getAttribute("id"));
-		WishListInfo wishlistInfo= wishlistService.viewWishList((String)request.getSession().getAttribute("id"));
 		
-		logger.info("Welcome mainController 여기까지1! " + new Date());
+		logger.info("Welcome 장바구니조회 이미지: " + wishlist.get(0).getImage());
+		logger.info("Welcome 장바구니조회 아이디: " + wishlist.get(0).getId());
 		
-		request.setAttribute("WishList",wishlistInfo);
-		
-		logger.info("Welcome mainController 여기까지2 " + new Date());
+		model.addAttribute("wishlist",wishlist);
+				
 		
 		return "member/wishlist";
 	}

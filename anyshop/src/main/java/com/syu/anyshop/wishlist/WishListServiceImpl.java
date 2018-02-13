@@ -18,7 +18,7 @@ public class WishListServiceImpl implements WishListService{
 	}
 
 	@Override
-	public WishListInfo viewWishList(String id) {
+	public List<WishListInfo> viewWishList(String id) {
 		return wishlistDao.viewWishList(id);	
 	}
 

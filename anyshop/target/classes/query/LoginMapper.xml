@@ -63,12 +63,24 @@
 	</select>
 
 	<!-- 비밀번호 찾기 -->
-	<!-- < <select id="findPw" parameterType="map" resultType="java.lang.String">
+	 <select id="findPw" parameterType="map" resultType="java.lang.String">
 		SELECT PW FROM MEMBER
 		<where>
-			ID = #{id} and NAME = #{name} and STUDENTID = #{studentId}
+			ID = #{id} and NAME = #{name} and PHONE = #{phone}
 		</where>
-	</select>  -->
+	</select>
+	
+	<!-- 암호변경 -->
+	<update id="updatePw" parameterType="map">
+		UPDATE MEMBER
+		SET  PW= #{pw}
+		<where>
+			ID = #{id}
+		</where>
+	</update> 
+	
+	
+	 
 	
 	<!-- 아이디 중복검사 -->
 	 <select id="userCheck" parameterType="String" resultType="int">

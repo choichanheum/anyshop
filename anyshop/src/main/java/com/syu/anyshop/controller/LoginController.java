@@ -1,10 +1,8 @@
 package com.syu.anyshop.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.syu.anyshop.login.LoginInfo;
 import com.syu.anyshop.login.LoginService;
 
-import net.sf.json.JSONObject;
-
 @Controller
 public class LoginController {
 	private static final Logger logger = 
@@ -32,6 +28,15 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
+
+	
+	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String main(Model model, HttpServletRequest request) {
+		logger.info("Welcome mainController home! " + new Date());
+		model.addAttribute("hello", "hello i'm heum");
+		
+		return "home/home";
+	}
 	
 	//로그인
 	@RequestMapping(value = "login.do", 
@@ -57,16 +62,32 @@ public class LoginController {
             if(check == true){
             	logger.info("Welcome LoginController loginAf!---- "+ check);
             	
-            	LoginInfo loginInfo2 = loginService.viewMember(loginInfo);
-                request.getSession().setAttribute("login", 0);
-                request.getSession().setMaxInactiveInterval(30*60); //10분
-                
-                request.getSession().setAttribute("id", loginInfo2.getId());
-                logger.info("세션값 확인!---- "+ request.getSession().getAttribute("id"));
-                request.getSession().setAttribute("name", loginInfo2.getName());
-                request.getSession().setAttribute("loginInfo", loginInfo2);
-                return "forward:/main.do";
+            	if(loginInfo.getId().equals("hjs9760")) {
+            		
+            		logger.info("Welcome LoginController 관리자 로그인아이디!---- "+ loginInfo.getId());
+            		LoginInfo loginInfo2 = loginService.viewMember(loginInfo);
+                    request.getSession().setAttribute("login", 0);
+                    request.getSession().setMaxInactiveInterval(30*60); //10분
+            		
+                    request.getSession().setAttribute("id", "hjs9760");
+                    request.getSession().setAttribute("name", loginInfo2.getName());
+                    request.getSession().setAttribute("loginInfo", loginInfo2);
+
+            		return "forward:/main.do";
+            		
+            	} else {
+	            	LoginInfo loginInfo2 = loginService.viewMember(loginInfo);
+	                request.getSession().setAttribute("login", 0);
+	                request.getSession().setMaxInactiveInterval(30*60); //10분
+	                
+	                request.getSession().setAttribute("id", loginInfo2.getId());
+	                logger.info("세션값 확인!---- "+ request.getSession().getAttribute("id"));
+	                request.getSession().setAttribute("name", loginInfo2.getName());
+	                request.getSession().setAttribute("loginInfo", loginInfo2);
+	                return "forward:/main.do";
+            	}
             }
+            
             if(check == false){
             	 request.getSession().invalidate();
             	logger.info("Welcome LoginController loginAf!---- "+ check);
@@ -77,11 +98,26 @@ public class LoginController {
         return "forward:/main.do";
     }
 	
+	//카카오 로그인 결과
+		@RequestMapping(value = "kakaoLoginAfter.do", 
+				method = {RequestMethod.GET,RequestMethod.POST})
+		public String kakaoCheck(Model model, @RequestParam String id, LoginInfo loginInfo, HttpServletRequest request) {
+			logger.info("Welcome kakaoLoginController kakaologinAf! "+ new Date());
+	               
+			request.getSession().setAttribute("id", id);
+            request.getSession().setMaxInactiveInterval(30*60); //10분         
+            logger.info("세션값 확인!---- "+ request.getSession().getAttribute("id"));
+			
+	      
+	        return "forward:/main.do";
+	    }
+	
+	
 	//로그아웃
 	@RequestMapping(value = "logout.do", 
 			method = {RequestMethod.GET,RequestMethod.POST})
 	public String logout(Model model, HttpServletRequest request) {
-		logger.info("Welcome LoginController loginout! "+ new Date());
+		logger.info("Welcome LoginController logout! "+ new Date());
 		request.getSession().invalidate();
 		return "home/home";
 	}
@@ -163,12 +199,10 @@ public class LoginController {
 		String id = loginService.findId(name, phone);
 		logger.info("아이디 찾기완료: "+ id);
 		
-		if( id != null) {
-			return "findIdAfter.jsp?id="+id;
-		}
-		else {
-			return "findIdAfter.jsp";
-		}
+		model.addAttribute("id", id);
+
+		return "login/findIdAfter";
+
 	}  
 	
 	//비밀번호 찾기
@@ -182,15 +216,32 @@ public class LoginController {
 	//비밀번호 찾기 결과
 	@RequestMapping(value = "findPwAfter.do", 
 			method = {RequestMethod.GET,RequestMethod.POST})
-	public String findPwAfter(@RequestParam String id, @RequestParam String name, @RequestParam String studentId, Model model) {
+	public String findPwAfter(@RequestParam String id, @RequestParam String name, @RequestParam String phone, Model model) {
 		logger.info("Welcome LoginController findPwAfter! "+ new Date());
 		logger.info("Welcome LoginController findPwAfter! "+ id);
 		logger.info("Welcome LoginController findPwAfter! "+ name);
-		logger.info("Welcome LoginController findPwAfter! "+ studentId);
-		String pw = loginService.findPw(id, name, studentId);
+		logger.info("Welcome LoginController findPwAfter! "+ phone);
+		String pw = loginService.findPw(id, name, phone);
 		logger.info("비밀번호 찾기완료: "+ pw);
-		return "redirect:/login.do?pw="+pw;
+		
+		model.addAttribute("pw",pw);
+		
+		return "login/findPwAfter";
 	}  
+	
+	//비밀번호 찾고 암호변경 후
+	@RequestMapping(value = "updatePw.do", 
+			method = {RequestMethod.GET,RequestMethod.POST})
+	public String updatePw(@RequestParam String id, @RequestParam String pw) {
+		logger.info("Welcome LoginController updatePw! "+ new Date());
+		logger.info("Welcome LoginController updatePw! "+ id);
+		
+		loginService.updatePw(id, pw);
+		
+		logger.info("업데이트 완료");
+		
+		return "home/home";
+	} 
 	
 	
 	
@@ -211,6 +262,7 @@ public class LoginController {
 	    PrintWriter pr= response.getWriter();
 	    jsonObject.write(pr);*/
 	}
+	
 	
 	
 }

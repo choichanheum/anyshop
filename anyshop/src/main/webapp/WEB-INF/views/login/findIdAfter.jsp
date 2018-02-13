@@ -21,13 +21,19 @@
                   <section id="unseen">
                      <table class="table table-hover" id="tablezz">
                      <c:if test="${id ne null }">
-                        <tr><td>아이디</td><td><input type=text name=name value="${id}" disabled></td></tr>
+                        	회원님의 아이디는  <span style="color:red; font-size:50px"> ${id} </span> 입니다.
                      </c:if>  
                       <c:if test="${id eq null }">
                         <tr><td>입력하신 정보로 일치하는 아이디가 없습니다.</td></tr>
                      </c:if>
                        
-                        <tr><td colspan="2"><button type="submit" class="aa-browse-btn" name="Submit">비밀번호  찾기</button>
+                        <tr><td colspan="2"><button type="submit" class="aa-browse-btn" name="Submit" onClick="return findPw();">비밀번호  찾기</button>
+                        	<script>
+                        		function findPw() {
+                        			location.href="findPw.do";
+                        		}
+                        	
+                        	</script>
                                                 
                      </table>
                   </section>
