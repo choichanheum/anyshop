@@ -60,6 +60,25 @@ create table wishlist(
 
 
 
+<<<<<<< HEAD
+=======
+-------- 택배 배송 테이블 --------------
+
+
+
+-------- 상품 테이블 ------------
+CREATE TABLE product (
+ 'product_id' int( 11 ) NOT NULL AUTO_INCREMENT ,
+ 'product_name' varchar( 50 ) DEFAULT NULL ,
+ 'product_price' int( 11 ) DEFAULT '0',
+ 'product_info' varchar( 500 ) DEFAULT NULL ,
+ 'product_img' varchar( 500 ) DEFAULT NULL ,
+ PRIMARY KEY ( 'product_id' ) 
+) ENGINE = MYISAM DEFAULT CHARSET = utf8;
+
+-------- 상품 등록 --------------  
+INSERT INTO product VALUES (1,'나이키',100000,'나이키 2017년 신상제품입니다.','polo-shirt-1.png');
+>>>>>>> branch 'master' of https://github.com/choichanheum/anyshop
 
 
 
