@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.syu.anyshop.login.LoginService;
+import com.syu.anyshop.product.ProductInfo;
+import com.syu.anyshop.product.ProductService;
 import com.syu.anyshop.wishlist.WishListInfo;
 import com.syu.anyshop.wishlist.WishListService;
 
@@ -26,12 +28,15 @@ public class MainController {
 	
 	@Autowired
 	private WishListService wishlistService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main(Model model, HttpServletRequest request) {
 		logger.info("Welcome mainController home! " + new Date());
-		model.addAttribute("hello", "hello i'm heum");
-		
+		List<ProductInfo> list = productService.productList();
+		model.addAttribute("list", list);
 		return "home/home";
 	}
 	
