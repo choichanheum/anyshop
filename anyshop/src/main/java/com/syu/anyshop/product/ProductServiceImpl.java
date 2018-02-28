@@ -15,6 +15,12 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductInfo> productList() {
 		return productDao.productList();
 	}
+
+	@Override
+	public List<ProductInfo> productManAllListView(String product_kinds) {
+
+		return productDao.productManAllListView(product_kinds);
+	}
 	
 
 }

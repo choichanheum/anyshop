@@ -112,12 +112,12 @@ public class LoginInfo {
 
 	@Override
 	public String toString() {
-		return "LoginInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", gender=" + gender
-				+ ", email=" + email + ", address=" + address + ", point=" + point + "]";
+		return "LoginInfo [id=" + id + ", name=" + name + ", phone=" + phone + ", gender=" + gender + ", email=" + email
+				+ ", address=" + address + ", point=" + point + "]";
 	}
 
-	
-	
+
+
 	
 	
 	

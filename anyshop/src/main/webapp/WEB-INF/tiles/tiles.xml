@@ -10,9 +10,11 @@
 		<!-- <put-attribute name="right" value="/WEB-INF/tiles/tile/right.jsp" /> -->
 	</definition>
 	
-	<definition name="base2" template="/WEB-INF/tiles/layout/layout2.jsp" >
+	 <definition name="base2" template="/WEB-INF/tiles/layout/layout2.jsp" >
+	 	<put-attribute name="top" value="/WEB-INF/tiles/tile/top.jsp" />
 		<put-attribute name="left" value="/WEB-INF/tiles/tile/left.jsp" /> 
-	</definition>
+		<put-attribute name="top2" value="/WEB-INF/tiles/tile/top2.jsp" />
+	</definition> 
 	
 	
 <!-- 	<definition name="/" extends="base" >
@@ -27,8 +29,8 @@
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 	
-	<definition name="admin/*" extends="base2" >
-		<put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" />
+	<definition name="*/*/*" extends="base2" >
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
 	</definition>
 	
 	<!-- <definition name="empty" template="/WEB-INF/tiles/layout/empty.jsp" >

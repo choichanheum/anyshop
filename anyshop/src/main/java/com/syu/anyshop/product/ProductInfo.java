@@ -1,6 +1,8 @@
 package com.syu.anyshop.product;
 
 public class ProductInfo {
+	private String product_kinds;
+	private String product_detail;
 	private int product_id;
 	private String product_name;
 	private int product_price;
@@ -8,19 +10,24 @@ public class ProductInfo {
 	private String product_img;
 	
 	
-	public ProductInfo() {
-		super();
+
+	public String getProduct_kinds() {
+		return product_kinds;
 	}
 
 
-	public ProductInfo(int product_id, String product_name, int product_price, String product_info,
-			String product_img) {
-		super();
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.product_price = product_price;
-		this.product_info = product_info;
-		this.product_img = product_img;
+	public void setProduct_kind(String product_kind) {
+		this.product_kinds = product_kind;
+	}
+
+
+	public String getProduct_detail() {
+		return product_detail;
+	}
+
+
+	public void setProduct_detail(String product_detail) {
+		this.product_detail = product_detail;
 	}
 
 
@@ -76,11 +83,12 @@ public class ProductInfo {
 
 	@Override
 	public String toString() {
-		return "ProductInfo [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
-				+ product_price + ", product_info=" + product_info + ", product_img=" + product_img + "]";
+		return "ProductInfo [product_kinds=" + product_kinds + ", product_detail=" + product_detail + ", product_id="
+				+ product_id + ", product_name=" + product_name + ", product_price=" + product_price + ", product_info="
+				+ product_info + ", product_img=" + product_img + "]";
 	}
+
 	
 	
 }
-
-
+	

@@ -17,6 +17,13 @@ public class ProductDaoImpl implements ProductDao{
 	public List<ProductInfo> productList() {
 		return sqlSession.selectList(ns+"productList");
 	}
+
+	@Override
+	public List<ProductInfo> productManAllListView(String product_kinds) {
+		
+		return sqlSession.selectList(ns + "productManAllListView", product_kinds);
+		
+	}
 	
 	
 }

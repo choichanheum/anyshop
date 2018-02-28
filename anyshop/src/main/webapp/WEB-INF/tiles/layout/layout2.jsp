@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,38 +36,34 @@
     <!-- Custom Theme Style -->
     <link href="resources/gentelella/build/css/custom.min.css" rel="stylesheet">
   </head>
-<body>
 
- <tiles:insertAttribute name="left" />
+<body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        
+        
+        <tiles:insertAttribute name="left" />
+        
+        <tiles:insertAttribute name="top" />
 
-<div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>    
-            </nav>
-                      
-            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
-			
-			<c:if test="${sessionScope.id ne null }">
-            <a href="logout.do" style="float:right; font-size:20px" onclick="return logout();">로그아웃 </a> 
-            
-            <script>
-            	function logout() {
-            		if(confirm('정말 로그아웃 하시겠습니까?') == true) {
-            			alert('정상적으로 로그아웃 되었습니다.');
-        				return true;
-            		}	
-            	}
-            </script>            
-           </c:if>           
-</div>
-          
- 
 
-   <tiles:insertAttribute name="body" />      
-   
-   
+
+
+        <!-- page content -->
+        <div class="right_col" role="main" style="min-height: 1862px;">
+         
+         <tiles:insertAttribute name="top2" />
+
+          <tiles:insertAttribute name="body" />
+                
+
+        </div>
+      </div>
+    </div>
+
+        <!-- /page content -->
+
+
    <!-- jQuery -->
     <script src="resources/gentelella/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -107,7 +104,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="resources/gentelella/build/js/custom.min.js"></script>
-          
+	
+  
 
-</body>
-</html>
+<div class="jqvmap-label" style="display: none;"></div><div class="daterangepicker dropdown-menu ltr opensleft"><div class="calendar left"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_start" value=""><i class="fa fa-calendar glyphicon glyphicon-calendar"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="calendar right"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_end" value=""><i class="fa fa-calendar glyphicon glyphicon-calendar"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="ranges"><ul><li data-range-key="Today">Today</li><li data-range-key="Yesterday">Yesterday</li><li data-range-key="Last 7 Days">Last 7 Days</li><li data-range-key="Last 30 Days">Last 30 Days</li><li data-range-key="This Month">This Month</li><li data-range-key="Last Month">Last Month</li><li data-range-key="Custom">Custom</li></ul><div class="range_inputs"><button class="applyBtn btn btn-default btn-small btn-primary" disabled="disabled" type="button">Submit</button> <button class="cancelBtn btn btn-default btn-small" type="button">Clear</button></div></div></div></body>

@@ -195,7 +195,7 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><a href="main.do">Home</a></li>
-              <li><a href="#">남자 <span class="caret"></span></a>
+              <li><a href="productManAllList.do?product_kinds=man">남자 <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">Casual</a></li>
                   <li><a href="#">Sports</a></li>

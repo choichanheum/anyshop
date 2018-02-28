@@ -30,7 +30,7 @@ public class LoginController {
 	private LoginService loginService;
 
 	
-	@RequestMapping(value = "/main.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "main.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String main(Model model, HttpServletRequest request) {
 		logger.info("Welcome mainController home! " + new Date());
 		model.addAttribute("hello", "hello i'm heum");
@@ -67,8 +67,8 @@ public class LoginController {
             		logger.info("Welcome LoginController 관리자 로그인아이디!---- "+ loginInfo.getId());
             		LoginInfo loginInfo2 = loginService.viewMember(loginInfo);
                     request.getSession().setAttribute("login", 0);
-                    request.getSession().setMaxInactiveInterval(30*60); //10분
-            		
+                  /*  request.getSession().setMaxInactiveInterval(30*60); //10분
+*/            		
                     request.getSession().setAttribute("id", "hjs9760");
                     request.getSession().setAttribute("name", loginInfo2.getName());
                     request.getSession().setAttribute("loginInfo", loginInfo2);
@@ -78,8 +78,8 @@ public class LoginController {
             	} else {
 	            	LoginInfo loginInfo2 = loginService.viewMember(loginInfo);
 	                request.getSession().setAttribute("login", 0);
-	                request.getSession().setMaxInactiveInterval(30*60); //10분
-	                
+	                /*request.getSession().setMaxInactiveInterval(30*60); //10분
+*/	                
 	                request.getSession().setAttribute("id", loginInfo2.getId());
 	                logger.info("세션값 확인!---- "+ request.getSession().getAttribute("id"));
 	                request.getSession().setAttribute("name", loginInfo2.getName());
@@ -251,12 +251,12 @@ public class LoginController {
 	public Map<String, Integer> UserCheckServlet(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException{
 		logger.info("Welcome LoginController UserCheckServlet! "+ new Date());
 		String id= request.getParameter("id");
-		logger.info(id);
+		logger.info("등록할  아이디: " + id);
 		int result= loginService.userCheck(id);
-		logger.info(Integer.toString(result));
+
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		map.put("result", result);
-		logger.info("여기 값 출력: " + map.get("result"));
+		logger.info("등록할 아이디 존재값: " + map.get("result"));
 		return map;
 	/*	JSONObject jsonObject = JSONObject.fromObject(map);
 	    PrintWriter pr= response.getWriter();

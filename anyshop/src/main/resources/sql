@@ -31,17 +31,17 @@ CREATE TABLE ORDERLIST(
 
 
 -------- 제품 테이블 생성 ------------
-create table product (
-    productcode int(100),
-    ordernumber int(100) not null,
-    quantity int(10) not null,
-    price int(10) not null,
-    category varchar(20) not null,
-    sale varchar(10) default '0',
+CREATE TABLE `anyshopdb`.`product` (
+ `product_kinds` varchar(20) NOT NULL,
+ `product_detail` varchar(20) NOT NULL,
+ `product_id` int( 11 ) NOT NULL AUTO_INCREMENT ,
+ `product_name` varchar( 50 ) DEFAULT NULL ,
+ `product_price` int( 11 ) DEFAULT '0',
+ `product_info` varchar( 500 ) DEFAULT NULL ,
+ `product_img` varchar( 500 ) DEFAULT NULL ,
+ PRIMARY KEY ( `product_id` ) 
+) ENGINE = MYISAM DEFAULT CHARSET = utf8;
 
-    primary key(productcode) 
-
-);
 
 -------- 장바구니 테이블 --------
 create table wishlist(

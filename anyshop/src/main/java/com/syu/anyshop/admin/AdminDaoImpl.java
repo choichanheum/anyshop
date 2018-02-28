@@ -16,9 +16,29 @@ public class AdminDaoImpl implements AdminDao{
 	private SqlSession sqlSession;
 
 	@Override
-	public List<LoginInfo> showMembert() {
+	public List<LoginInfo> showAllMember() {
 		
-		return sqlSession.selectList(ns+"AllMemberList");
+		return sqlSession.selectList(ns+"showAllMember");
+	}
+
+	@Override
+	public LoginInfo searchMember(String id) {
+
+		return sqlSession.selectOne(ns+"searchMember", id);
+	}
+
+	@Override
+	public void updateMember(LoginInfo loginInfo) {
+		
+		sqlSession.update(ns+"updateMember", loginInfo);
+		return;
+	}
+
+	@Override
+	public void regiMember(LoginInfo loginInfo) {
+		sqlSession.insert(ns+"regiMember", loginInfo);
+		return;
+		
 	}
 
 

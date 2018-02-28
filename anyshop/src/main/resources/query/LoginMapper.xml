@@ -79,9 +79,7 @@
 		</where>
 	</update> 
 	
-	
-	 
-	
+
 	<!-- 아이디 중복검사 -->
 	 <select id="userCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM MEMBER
